@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Blog</title>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></link>
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"></link>
+<link rel="stylesheet" href="css/style.css" ></link>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<div role="navigation">
+		<div class="navbar navbar-inverse">
+			<a href="/" class="navbar-brand">Task Manager</a>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="login">Login</a></li>
+					
+					<li><a href="/allposts">Posts</a></li>
+					<li><a href="/add-post">Add Post</a></li>
+					<li><a href="users">Users</a></li>
+					<li><a href="">Hello <span th:text="${username}"></span></a></li>
+					
+					<li>
+					<form th:action="@{/login?logout}" method="post">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					<a href=""><input type="submit" th:if="${username}!=null" class="btn btn-warning" style="margin-top:10px;" value="Logout"></input></a>
+					</form>
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+	<ul id="messages" th:with="notifyMessages=${session[T(blog.services
+          .NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
+      <li th:each="msg : ${notifyMessages}" th:text="${msg.text}"
+            class="alert alert-warning">
+      </li>
+      <span class="alert alert-warning" th:if="${notifyMessages}" th:remove="all" th:text="${session.remove(
+          T(blog.services.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY)}"></span>
+
+    </ul>
+	<div class="container">
+		<div class="col-md-9">
+			<h1>Welcome to Spring MVC</h1>s
+		    Now is: <b th:text="${execInfo.now.time}"></b>
+    	</div>
+    	<div class="col-md-3 latest5" th:fragment="site-last5">
+    	<h4>Latest Posts</h4>
+    	<ul th:each="p : ${latest5}">
+    		<li><a href="#" th:text="${p.title}" th:href="@{/post/{id}/(id=${p.id})}">Work Begins on HTML5.1</a></li>
+    	</ul>
+    	</div>
+    
+    </div>
+</body>
+
+</html>

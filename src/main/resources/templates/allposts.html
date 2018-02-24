@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Blog</title>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></link>
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"></link>
+<link rel="stylesheet" href="css/style.css" ></link>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<div role="navigation">
+		<div class="navbar navbar-inverse">
+			<a href="/" class="navbar-brand">Task Manager</a>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="login">Login</a></li>
+					
+					<li><a href="/allposts">Posts</a></li>
+					<li><a href="/add-post">Add Post</a></li>
+					<li><a href="users">Users</a></li>
+					<li>Hello <b>(User)</b></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container" >
+		<div class="col-md-12">
+			<table class="table-striped table">
+				<thead>
+				<tr>
+					<th>Post Name</th>
+					<th>Post date</th>
+					<th>Author</th>
+				
+				</tr>
+				</thead>
+				<tbody>
+				<tr th:each="post : ${allposts}">
+					<td ><a href="#" th:text="${post.title}" th:href="@{/post/{id}/(id=${post.id})}">Work Begins on HTML5.1</a></td>
+					<td th:text="${post.date}"></td>
+					<td  th:text="${post.author.fullName}"></td>
+				</tr>
+				</tbody>
+			</table>
+		   
+    	</div>
+    	
+    
+    </div>
+</body>
+
+</html>

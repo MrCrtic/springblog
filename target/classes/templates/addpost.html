@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Blog</title>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></link>
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"></link>
+<link rel="stylesheet" href="css/style.css" ></link>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<div role="navigation">
+		<div class="navbar navbar-inverse">
+			<a href="/" class="navbar-brand">Task Manager</a>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="login">Login</a></li>
+					
+					<li><a href="/allposts">Posts</a></li>
+					<li><a href="/add-post">Add Post</a></li>
+					<li><a href="users">Users</a></li>
+					<li>Hello <b>(User)</b></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container" >
+		<div class="col-md-12">
+			<h1>Add New Post</h1>
+		  <form class="form-horizontal" th:action="@{/postsave}" method="post">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Create and publish new post.</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Title</label>  
+  <div class="col-md-5">
+  <input id="title" name="title" type="text" placeholder="" class="form-control input-md"></input>
+   
+    
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textarea">Post</label>
+  <div class="col-md-4">                     
+    <textarea class="form-control"  id="body" name="body"></textarea>
+  </div>
+</div>
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="singlebutton"></label>
+  <div class="col-md-4">
+    <button id="singlebutton" name="singlebutton" class="btn btn-success">Save</button>
+  </div>
+</div>
+</fieldset>
+</form>
+		   
+		    
+    	</div>
+    	
+    
+    </div>
+</body>
+
+</html>
