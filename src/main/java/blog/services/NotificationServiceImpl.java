@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 @Service
 public class NotificationServiceImpl implements NotificationService {
-	public static final String NOTIFY_MSG_SESSION_KEY = "siteNotificationMessages";
-	@Autowired
+    public static final String NOTIFY_MSG_SESSION_KEY = "siteNotificationMessages";
+    @Autowired
     private HttpSession httpSession;
-	
-	@Override
+
+    @Override
     public void addInfoMessage(String msg) {
         addNotificationMessage(NotificationMessageType.INFO, msg);
     }
@@ -23,10 +23,10 @@ public class NotificationServiceImpl implements NotificationService {
         addNotificationMessage(NotificationMessageType.ERROR, msg);
     }
     private void addNotificationMessage(NotificationMessageType type, String msg) {
-        List<NotificationMessage> notifyMessages = (List<NotificationMessage>)
+        List < NotificationMessage > notifyMessages = (List < NotificationMessage > )
         httpSession.getAttribute(NOTIFY_MSG_SESSION_KEY);
         if (notifyMessages == null) {
-            notifyMessages = new ArrayList<NotificationMessage>();
+            notifyMessages = new ArrayList < NotificationMessage > ();
         }
         notifyMessages.add(new NotificationMessage(type, msg));
         httpSession.setAttribute(NOTIFY_MSG_SESSION_KEY, notifyMessages);
@@ -53,17 +53,17 @@ public class NotificationServiceImpl implements NotificationService {
         public String getText() {
             return text;
         }
-}
+    }
 
-	@Override
-	public void addInfoMessages(String msg) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void addInfoMessages(String msg) {
+        // TODO Auto-generated method stub
 
-	@Override
-	public void AddErrorMessages(String msg) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
+
+    @Override
+    public void AddErrorMessages(String msg) {
+        // TODO Auto-generated method stub
+
+    }
 }
