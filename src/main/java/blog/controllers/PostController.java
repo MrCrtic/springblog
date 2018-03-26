@@ -26,43 +26,43 @@ import blog.services.UserService;
 @Controller
 public class PostController {
 
-	@Autowired
-	private PostService postService;
-	@Autowired
-	private UserService userService;
-	@Autowired
-	private NotificationService notifyService;
-	@GetMapping("post/{id}")
-	public String postDetail(Model model,@PathVariable("id") Long id, HttpServletRequest request) {
-		Post post = postService.findById(id);
-		  if (post == null) {
-              notifyService.addErrorMessage("Cannot find post #" + id);
-              return "redirect:/";
-          }
-		model.addAttribute("post",post);
-		return "post";
-		
-	}
-	@GetMapping("/allposts")
-	public String allPosts(Model model) {
-		List<Post> post = postService.findAll();
-		model.addAttribute("allposts",post);
-		return "allposts";
-	}
-	@GetMapping("/add-post")
-	public String savePost() {
-		return "/addpost";
-	}
-	@PostMapping("/postsave")
-	public String addPost(@ModelAttribute Post post, HttpServletRequest request) {
-		post.setDate(new Date());
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	      String username = auth.getName(); //get logged in username
-		Long id = (long) 18;
-		User user = this.userService.findByUsername(username);
-		post.setAuthor(user );
-		this.postService.create(post);
-		return "/addpost";
-		
-	}
+    @Autowired
+    private PostService postService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private NotificationService notifyService;
+    @GetMapping("post/{id}")
+    public String postDetail(Model model, @PathVariable("id") Long id, HttpServletRequest request) {
+        Post post = postService.findById(id);
+        if (post == null) {
+            notifyService.addErrorMessage("Cannot find post #" + id);
+            return "redirect:/";
+        }
+        model.addAttribute("post", post);
+        return "post";
+
+    }
+    @GetMapping("/allposts")
+    public String allPosts(Model model) {
+        List < Post > post = postService.findAll();
+        model.addAttribute("allposts", post);
+        return "allposts";
+    }
+    @GetMapping("/add-post")
+    public String savePost() {
+        return "/addpost";
+    }
+    @PostMapping("/postsave")
+    public String addPost(@ModelAttribute Post post, HttpServletRequest request) {
+        post.setDate(new Date());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName(); //get logged in username
+        Long id = (long) 18;
+        User user = this.userService.findByUsername(username);
+        post.setAuthor(user);
+        this.postService.create(post);
+        return "/addpost";
+
+    }
 }
